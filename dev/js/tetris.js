@@ -84,6 +84,7 @@ function tick() {
       // もしゲームオーバなら最初から始める
       timer = next_timer;
       score = next_score;
+      get_score();
       newGame();
       return false;
     }
@@ -153,6 +154,7 @@ function clearLines() {
         }
       }
       score = score + 100;
+      get_score();
       timer = timer + 5;
       ++y;  // 一行落としたのでチェック処理を一つ下へ送る
     }
@@ -209,6 +211,7 @@ function limit(){
       // もしゲームオーバなら最初から始める
       timer = next_time;
       score = next_score;
+      get_score();
       newGame();
       return false;
    }
@@ -234,6 +237,5 @@ function newGame() {
   lose = false;  // 負けフラグリセット
   interval = setInterval(tick, 250);  // 250ミリ秒ごとにtickという関数を呼び出す
   timer_interval = setInterval(limit, 1000);  
-  score_interval = setInterval(get_score,0);
 }
 
