@@ -215,10 +215,11 @@ function newGame() {
   clearInterval(interval);  // ゲームタイマーをクリア
   clearInterval(timer_interval);
   init();  // 盤面リセット
+  // 30ミリ秒ごとに状態を描画する関数を呼び出す
+  setInterval(render, 30);
   newShape();  // 操作ブロックをセット
   lose = false;  // 負けフラグリセット
   interval = setInterval(tick, 250);  // 250ミリ秒ごとにtickという関数を呼び出す
   timer_interval = setInterval(limit, 1000);  
 }
 
-newGame();
