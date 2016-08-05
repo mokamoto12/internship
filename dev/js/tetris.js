@@ -6,6 +6,9 @@ var COLS = 10,
   current, // 今操作しているブロックの形
   currentX,
   currentY, // 今操作しているブロックの位置
+  timer = 5,
+  next_time = 5,
+  timer_interval,
 
 // 操作するブロックのパターン
   shapes = [
@@ -77,6 +80,7 @@ function tick() {
     clearLines();  // ライン消去処理
     if (lose) {
       // もしゲームオーバなら最初から始める
+      timer = next_timer;
       newGame();
       return false;
     }
@@ -190,13 +194,30 @@ function rotate(current) {
   return newCurrent;
 }
 
+function limit(){
+   if (lose) {
+      // もしゲームオーバなら最初から始める
+      timer = next_time;
+      newGame();
+      return false;
+   }
+ timer -= 1;
+  var elm = document.getElementById("timer");
+  elm.innerHTML = timer;
+  if(timer<=0){
+    lose = true; 
+  } 
+}
+
 // ゲーム開始時の関数
 function newGame() {
   clearInterval(interval);  // ゲームタイマーをクリア
+  clearInterval(timer_interval);
   init();  // 盤面リセット
   newShape();  // 操作ブロックをセット
   lose = false;  // 負けフラグリセット
   interval = setInterval(tick, 250);  // 250ミリ秒ごとにtickという関数を呼び出す
+  timer_interval = setInterval(limit, 1000);  
 }
 
 newGame();
