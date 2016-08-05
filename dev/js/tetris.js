@@ -229,7 +229,6 @@ function limit(){
 function newGame() {
   clearInterval(interval);  // ゲームタイマーをクリア
   clearInterval(timer_interval);
-  clearInterval(score);
   init();  // 盤面リセット
   // 30ミリ秒ごとに状態を描画する関数を呼び出す
   setInterval(render, 30);
