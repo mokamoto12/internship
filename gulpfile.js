@@ -13,8 +13,6 @@ var
 gulp.task('webserver', function() {
   gulp.src(dest)
     .pipe(webserver({
-      livereload: true,
-      open: true,
     }));
 });
 
@@ -32,8 +30,6 @@ gulp.task('sass', function(){
 gulp.task('concat', function() {
   return gulp.src(['node_modules/jquery/dist/jquery.min.js', src + 'js/**/*.js'])
     .pipe(plumber())
-    .pipe(concat('main.js'))
-    .pipe(uglify())
     .pipe(gulp.dest(dest + 'js/'));
 });
 
