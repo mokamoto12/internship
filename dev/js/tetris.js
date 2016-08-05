@@ -6,8 +6,8 @@ var COLS = 10,
   current, // 今操作しているブロックの形
   currentX,
   currentY, // 今操作しているブロックの位置
-  timer = 5,
-  next_time = 5,
+  timer = 30,
+  next_time = 30,
   timer_interval,
 
 // 操作するブロックのパターン
@@ -142,13 +142,14 @@ function clearLines() {
     }
     // もし一行揃っていたら, サウンドを鳴らしてそれらを消す。
     if (rowFilled) {
-//      document.getElementById('clearsound').play();  // 消滅サウンドを鳴らす
+      //document.getElementById('clearsound').play();  // 消滅サウンドを鳴らす
       // その上にあったブロックを一つずつ落としていく
       for (var yy = y; yy > 0; --yy) {
         for (var x = 0; x < COLS; ++x) {
           board[yy][x] = board[yy - 1][x];
         }
       }
+      timer = timer +5;
       ++y;  // 一行落としたのでチェック処理を一つ下へ送る
     }
   }
