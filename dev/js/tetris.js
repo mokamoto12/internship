@@ -6,11 +6,12 @@ var COLS = 10,
   current, // 今操作しているブロックの形
   currentX,
   currentY, // 今操作しているブロックの位置
-  timer = 30,
-  next_time = 30,
+  timer = 60,
+  next_time = 60,
   timer_interval,
   score = 0,
   next_score = 0,
+  elm_timer = document.getElementById("timer"),
 
 // 操作するブロックのパターン
   shapes = [
@@ -206,13 +207,12 @@ function rotate(current) {
 }
 
 function limit(){
-   if (lose) {
-     geme_over();
-     return false;
-   }
- timer -= 1;
-  var elm = document.getElementById("timer");
-  elm.innerHTML = timer;
+  if (lose) {
+    geme_over();
+    return false;
+  }
+  timer -= 1;
+  elm_timer.innerHTML = timer;
   if(timer<=0){
     lose = true; 
   } 
@@ -236,8 +236,9 @@ function newGame() {
   setInterval(render, 30);
   newShape();  // 操作ブロックをセット
   lose = false;  // 負けフラグリセット
+  elm_timer.innerHTML = timer;
   get_score();
   interval = setInterval(tick, 250);  // 250ミリ秒ごとにtickという関数を呼び出す
-  timer_interval = setInterval(limit, 1000);  
+  timer_interval = setInterval(limit, 1000);
 }
 
