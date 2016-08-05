@@ -1,7 +1,7 @@
 /*
  キーボードを入力した時に一番最初に呼び出される処理
  */
-document.body.onkeydown = function (e) {
+document.onkeypress = function (e) {
   // キーに名前をセットする
   var keys = {
     37: 'left',

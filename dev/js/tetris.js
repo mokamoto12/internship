@@ -103,7 +103,7 @@ function valid(offsetX, offsetY, newCurrent) {
           || y + offsetY >= ROWS
           || x + offsetX >= COLS) {
           if (offsetY == 1 && offsetX - currentX == 0 && offsetY - currentY == 1) {
-            console.log('game over');
+           // console.log('game over');
             lose = true; // もし操作ブロックが盤面の上にあったらゲームオーバーにする
           }
           return false;
@@ -138,7 +138,7 @@ function clearLines() {
     }
     // もし一行揃っていたら, サウンドを鳴らしてそれらを消す。
     if (rowFilled) {
-      document.getElementById('clearsound').play();  // 消滅サウンドを鳴らす
+//      document.getElementById('clearsound').play();  // 消滅サウンドを鳴らす
       // その上にあったブロックを一つずつ落としていく
       for (var yy = y; yy > 0; --yy) {
         for (var x = 0; x < COLS; ++x) {
