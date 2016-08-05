@@ -9,8 +9,6 @@ var COLS = 10,
   timer = 30,
   next_time = 30,
   timer_interval,
-  score = 0,
-  next_score = 0,
 
 // 操作するブロックのパターン
   shapes = [
@@ -83,7 +81,6 @@ function tick() {
     if (lose) {
       // もしゲームオーバなら最初から始める
       timer = next_timer;
-      score = next_score;
       newGame();
       return false;
     }
@@ -152,16 +149,10 @@ function clearLines() {
           board[yy][x] = board[yy - 1][x];
         }
       }
-      score = score + 100;
-      timer = timer + 5;
+      timer = timer +5;
       ++y;  // 一行落としたのでチェック処理を一つ下へ送る
     }
   }
-}
-
-function get_score(){
-  var elm = document.getElementById("score"); 
-  elm.innerHTML = score;
 }
 
 // キーボードが押された時に呼び出される関数
@@ -208,7 +199,6 @@ function limit(){
    if (lose) {
       // もしゲームオーバなら最初から始める
       timer = next_time;
-      score = next_score;
       newGame();
       return false;
    }
@@ -220,13 +210,10 @@ function limit(){
   } 
 }
 
-
-
 // ゲーム開始時の関数
 function newGame() {
   clearInterval(interval);  // ゲームタイマーをクリア
   clearInterval(timer_interval);
-  clearInterval(score);
   init();  // 盤面リセット
   // 30ミリ秒ごとに状態を描画する関数を呼び出す
   setInterval(render, 30);
@@ -234,6 +221,5 @@ function newGame() {
   lose = false;  // 負けフラグリセット
   interval = setInterval(tick, 250);  // 250ミリ秒ごとにtickという関数を呼び出す
   timer_interval = setInterval(limit, 1000);  
-  score_interval = setInterval(get_score,0);
 }
 
