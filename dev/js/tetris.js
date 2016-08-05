@@ -194,9 +194,10 @@ function rotate(current) {
 function newGame() {
   clearInterval(interval);  // ゲームタイマーをクリア
   init();  // 盤面リセット
+  // 30ミリ秒ごとに状態を描画する関数を呼び出す
+  setInterval(render, 30);
   newShape();  // 操作ブロックをセット
   lose = false;  // 負けフラグリセット
   interval = setInterval(tick, 250);  // 250ミリ秒ごとにtickという関数を呼び出す
 }
 
-newGame();

@@ -42,5 +42,4 @@ function render() {
   }
 }
 
-// 30ミリ秒ごとに状態を描画する関数を呼び出す
-setInterval(render, 30);
+
