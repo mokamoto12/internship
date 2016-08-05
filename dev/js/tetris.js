@@ -178,8 +178,11 @@ function keyPress(key) {
       }
       break;
     case 'down':
-      if (valid(0, 1)) {
-        ++currentY;  // 下に一つずらす
+      for (var i = 20; i; i--) {
+        if (valid(0, i)) {
+          currentY = (currentY + i);
+          break;
+        }
       }
       break;
     case 'rotate':
