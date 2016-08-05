@@ -236,6 +236,7 @@ function newGame() {
   setInterval(render, 30);
   newShape();  // 操作ブロックをセット
   lose = false;  // 負けフラグリセット
+  get_score();
   interval = setInterval(tick, 250);  // 250ミリ秒ごとにtickという関数を呼び出す
   timer_interval = setInterval(limit, 1000);  
 }
