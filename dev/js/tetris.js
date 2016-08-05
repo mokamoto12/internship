@@ -81,10 +81,7 @@ function tick() {
     freeze();  // 操作ブロックを盤面へ固定する
     clearLines();  // ライン消去処理
     if (lose) {
-      // もしゲームオーバなら最初から始める
-      timer = next_timer;
-      score = next_score;
-      newGame();
+      game_over();
       return false;
     }
     // 新しい操作ブロックをセットする
@@ -153,6 +150,7 @@ function clearLines() {
         }
       }
       score = score + 100;
+      get_score();
       timer = timer + 5;
       ++y;  // 一行落としたのでチェック処理を一つ下へ送る
     }
@@ -209,11 +207,8 @@ function rotate(current) {
 
 function limit(){
    if (lose) {
-      // もしゲームオーバなら最初から始める
-      timer = next_time;
-      score = next_score;
-      newGame();
-      return false;
+     geme_over();
+     return false;
    }
  timer -= 1;
   var elm = document.getElementById("timer");
@@ -223,13 +218,19 @@ function limit(){
   } 
 }
 
-
+function game_over() {
+  alert('score: ' + score);
+  clearInterval(interval);  // ゲームタイマーをクリア
+  clearInterval(timer_interval);
+  // もしゲームオーバなら最初から始める
+  timer = next_time;
+  score = next_score;
+  document.getElementById('start_button').removeAttribute('disabled');
+  get_score();
+}
 
 // ゲーム開始時の関数
 function newGame() {
-  clearInterval(interval);  // ゲームタイマーをクリア
-  clearInterval(timer_interval);
-  clearInterval(score);
   init();  // 盤面リセット
   // 30ミリ秒ごとに状態を描画する関数を呼び出す
   setInterval(render, 30);
@@ -237,6 +238,5 @@ function newGame() {
   lose = false;  // 負けフラグリセット
   interval = setInterval(tick, 250);  // 250ミリ秒ごとにtickという関数を呼び出す
   timer_interval = setInterval(limit, 1000);  
-  score_interval = setInterval(get_score,0);
 }
 
